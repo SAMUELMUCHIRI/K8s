@@ -31,12 +31,15 @@ spec:
         app: synergychat-web
     spec:
       containers:
-      - image: docker.io/bootdotdev/synergychat-web:latest
-        imagePullPolicy: Always
-        name: synergychat-web
-        resources: {}
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
+        - image: docker.io/bootdotdev/synergychat-web:latest
+          imagePullPolicy: Always
+          name: synergychat-web
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          envFrom:
+            - configMapRef:
+                name: synergychat-web-configmap
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -45,18 +48,18 @@ spec:
 status:
   availableReplicas: 3
   conditions:
-  - lastTransitionTime: "2026-02-10T03:44:25Z"
-    lastUpdateTime: "2026-02-10T03:44:36Z"
-    message: ReplicaSet "synergychat-web-f7b9f96dd" has successfully progressed.
-    reason: NewReplicaSetAvailable
-    status: "True"
-    type: Progressing
-  - lastTransitionTime: "2026-02-10T04:05:58Z"
-    lastUpdateTime: "2026-02-10T04:05:58Z"
-    message: Deployment has minimum availability.
-    reason: MinimumReplicasAvailable
-    status: "True"
-    type: Available
+    - lastTransitionTime: "2026-02-10T03:44:25Z"
+      lastUpdateTime: "2026-02-10T03:44:36Z"
+      message: ReplicaSet "synergychat-web-f7b9f96dd" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    - lastTransitionTime: "2026-02-10T04:05:58Z"
+      lastUpdateTime: "2026-02-10T04:05:58Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
   observedGeneration: 5
   readyReplicas: 3
   replicas: 3
